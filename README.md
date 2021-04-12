@@ -29,3 +29,4 @@ npm install
 ## Supported languages
 
 * [Ruby](ruby/README.md)
+* [Python](python/README.md)
