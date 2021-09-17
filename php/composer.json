@@ -1,0 +1,15 @@
+{
+    "require": {
+        "hubspot/api-client": "*",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "files": [
+            "src/Helpers/functions.php"
+        ],
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
