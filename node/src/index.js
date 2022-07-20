@@ -49,7 +49,7 @@ const checkAuthorization = async (req, res, next) => {
 }
 
 const refreshToken = async () => {
-    const result = await hubspotClient.oauth.defaultApi.createToken(
+    const result = await hubspotClient.oauth.tokensApi.createToken(
         GRANT_TYPES.REFRESH_TOKEN,
         undefined,
         undefined,
@@ -57,7 +57,7 @@ const refreshToken = async () => {
         CLIENT_SECRET,
         tokenStore.refreshToken,
     )
-    tokenStore = result.body
+    tokenStore = result
     tokenStore.updatedAt = Date.now()
     console.log('Updated tokens', tokenStore)
 
@@ -83,7 +83,7 @@ const getImportDetails = async (id) => {
     const importResponse = await hubspotClient.crm.imports.coreApi.getById(id)
     logResponse('Import Response:', importResponse)
 
-    return importResponse.body
+    return importResponse
 }
 
 const app = express()
@@ -132,7 +132,7 @@ app.use('/oauth-callback', async (req, res) => {
     // POST /oauth/v1/token
     // https://developers.hubspot.com/docs/api/working-with-oauth
     console.log('Retrieving access token by code:', code)
-    const getTokensResponse = await hubspotClient.oauth.defaultApi.createToken(
+    const getTokensResponse = await hubspotClient.oauth.tokensApi.createToken(
         GRANT_TYPES.AUTHORIZATION_CODE,
         code,
         REDIRECT_URI,
@@ -141,7 +141,7 @@ app.use('/oauth-callback', async (req, res) => {
     )
     logResponse('Retrieving access token result:', getTokensResponse)
 
-    tokenStore = getTokensResponse.body
+    tokenStore = getTokensResponse
     tokenStore.updatedAt = Date.now()
 
     // Set token for the
@@ -160,11 +160,12 @@ app.get('/imports', async (req, res) => {
         // Retrieving import records
         // GET /crm/v3/imports
         // https://developers.hubspot.com/docs/api/crm/imports
+        console.log(hubspotClient.config)
         console.log('Calling hubspotClient.crm.imports.coreApi.getPage. Get imports page.')
         const importsResponse = await hubspotClient.crm.imports.coreApi.getPage()
         logResponse('Imports Response:', importsResponse)
 
-        res.render('imports', { importsDetails: importsResponse.body.results })
+        res.render('imports', { importsDetails: importsResponse.results })
     } catch (e) {
         handleError(e, res)
     }

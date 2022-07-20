@@ -21,16 +21,19 @@
   "author": "hubspot",
   "license": "Apache-2.0",
   "dependencies": {
-    "@hubspot/api-client": "^3.1.0",
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.1.0",
-    "express": "^4.16.3",
-    "express-fileupload": "^1.1.7-alpha.3",
-    "hubspot": "^2.3.2",
-    "lodash": "^4.17.15",
-    "pug": "^2.0.4"
+    "@hubspot/api-client": "^7.1.1",
+    "body-parser": "^1.20.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "lodash": "^4.17.21",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^1.19.3"
+    "nodemon": "^2.0.19"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HubSpot/sample-apps-imports.git"
   }
 }
