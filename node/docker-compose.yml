@@ -9,8 +9,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./src:/imports-contacts-sample-app/src
-      - /imports-contacts-sample-app/src/node_modules
+      - ./src:/app/src
+      - /app/src/node_modules
     ports:
       - 3000:3000
     command: npm run dev
