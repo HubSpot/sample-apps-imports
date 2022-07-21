@@ -9,7 +9,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "./node_modules/.bin/mocha \"./test/test-oauth-app.js\" --timeout 60000 --exit"
+    "test": "./node_modules/.bin/mocha \"./test/test-oauth-app.js\" --timeout 60000 --exit",
+    "lint": "eslint . && prettier --list-different './**/*.{js,json}'",
+    "prettier:write": "prettier --write './**/*.{js,json}'"
   },
   "keywords": [
     "hubspot",
@@ -30,7 +32,9 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "eslint": "^7.18.0",
+    "prettier": "^2.2.1"
   },
   "repository": {
     "type": "git",
