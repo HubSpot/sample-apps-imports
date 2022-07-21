@@ -179,12 +179,9 @@ app.post('/imports', async (req, res) => {
             throw new Error('Cannot get file to import')
         }
 
-        const fileToImportConfig = {
-            value: fileToImport.data,
-            options: {
-                filename: fileToImport.name,
-                contentType: 'text/csv',
-            },
+        const file = {
+            data: fileToImport.data,
+            name: fileToImport.name
         }
 
         const importRequest = {
@@ -215,10 +212,11 @@ app.post('/imports', async (req, res) => {
         // POST/crm/v3/imports
         // https://developers.hubspot.com/docs/api/crm/imports
         console.log('Calling crm.imports.coreApi.create API method. Starting a new import')
-        const result = await hubspotClient.crm.imports.coreApi.create(fileToImportConfig, JSON.stringify(importRequest))
+        console.log(file)
+        const result = await hubspotClient.crm.imports.coreApi.create(file, JSON.stringify(importRequest))
 
         logResponse('Import result', result)
-        res.redirect(`imports/${result.body.id}`)
+        res.redirect(`imports/${result.id}`)
     } catch (e) {
         handleError(e, res)
     }
