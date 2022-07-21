@@ -28,6 +28,7 @@ npm install
 
 ## Supported languages
 
-* [Php](php/README.md)
+* [JavaScript (Node)](node/src/README.md)
 * [Python](python/README.md)
+* [Php](php/README.md)
 * [Ruby](ruby/README.md)
