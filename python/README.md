@@ -42,7 +42,18 @@ python cli.py -m create -f [filename] -c [columns_config]
 Example:
 
 ```
-python cli.py -m create -f import_emails.csv -c '[{"columnName": "First Name", "propertyName": "firstname", "columnObjectType": "CONTACT"}, {"columnName": "Email", "propertyName": "email", "columnObjectType": "CONTACT" }]'
+python cli.py -m create -f import_emails.csv -c '[
+    {
+      "columnName": "First Name",
+      "propertyName": "firstname",
+      "columnObjectType": "CONTACT"
+     },
+    {
+      "columnName": "Email",
+      "propertyName": "email",
+      "columnObjectType": "CONTACT" 
+     }
+     ]'
 ```
 
 Cancel an import
