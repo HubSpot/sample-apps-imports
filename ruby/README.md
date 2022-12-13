@@ -2,7 +2,7 @@
 
 ### Requirements
 
-1. ruby 2.6.3
+1. ruby 3.1.3
 2. [Configured](https://github.com/HubSpot/sample-apps-imports/blob/master/README.md#how-to-run-locally) .env file
 
 ### Running

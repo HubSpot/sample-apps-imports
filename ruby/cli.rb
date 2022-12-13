@@ -32,18 +32,16 @@ class Cli
   end
 
   def call_api
-    api = Hubspot::Crm::Imports::CoreApi.new
-    api.public_send(method, *params)
+    client = Hubspot::Client.new(access_token: access_token)
+    api = client.crm.imports.core_api
+    api.public_send(method, params)
   end
 
   def params
-    required_params = REQUIRED_PARAMS[method]
-    mapped_params = required_params.map { |param| options[param] }
-    opts = options[:opts] || {}
-    opts[:auth_names] = 'hapikey'
-    opts.merge!(import_request: import_request, files: file) if method == :create
-    mapped_params << opts
-    mapped_params
+    request = {}
+    request[:files]= file
+    request[:import_request] = import_request if method == :create
+    request
   end
 
   def import_request
