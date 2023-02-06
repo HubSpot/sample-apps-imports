@@ -9,10 +9,12 @@ class HubspotClientHelper
 {
     public static function createFactory(): Discovery
     {
-        if (!empty($_ENV['HUBSPOT_API_KEY'])) {
-            return Factory::createWithApiKey($_ENV['HUBSPOT_API_KEY']);
+        if (OAuth2Helper::isAuthenticated()) {
+            $accessToken = OAuth2Helper::refreshAndGetAccessToken();
+
+            return Factory::createWithAccessToken($accessToken);
         }
 
-        throw new \Exception('Please specify API key');
+        throw new \Exception('Please authorize via OAuth');
     }
 }
