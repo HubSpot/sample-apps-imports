@@ -15,12 +15,25 @@ if ('/' === $uri) {
 }
 
 try {
-    $routes = require '../routes.php';
-    
-    if (!in_array($uri, $routes)) {
+    $publicRoutes = require '../routes/public.php';
+    $protectedRoutes = require '../routes/protected.php';
+
+    if (in_array($uri, $protectedRoutes)) {
+        if (!OAuth2Helper::isAuthenticated()) {
+            header('Location: /oauth/login');
+        }
+    }
+
+    if ('/' === $uri) {
+        header('Location: /contacts/list');
+
+        exit;
+    }
+
+    if (!in_array($uri, array_merge($publicRoutes, $protectedRoutes))) {
         http_response_code(404);
 
-        exit();
+        exit;
     }
 
     $path = __DIR__.'/../actions'.$uri.'.php';

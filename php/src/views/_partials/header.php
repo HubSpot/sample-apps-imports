@@ -22,6 +22,9 @@
         <li class="navigation-item">
             <a class="navigation-link" href="/import/start">Import</a>
         </li>
+        <li class="navigation-item">
+          <a class="navigation-link" href="/oauth/login">OAuth2</a>
+        </li>
       </ul>
     </div>
   </nav>
